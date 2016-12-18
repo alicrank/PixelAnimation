@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{569F549E-41D6-AADD-2196-FAA7842291C4}") = "Pixel2D", "Assembly-CSharp-firstpass.csproj", "{BA4441D4-FADB-0F2E-C184-F60C23B1488E}"
+EndProject
+Project("{569F549E-41D6-AADD-2196-FAA7842291C4}") = "Pixel2D", "Assembly-CSharp.csproj", "{D017100F-1DBC-CA12-69EA-D311ED9DAF49}"
+EndProject
+Project("{569F549E-41D6-AADD-2196-FAA7842291C4}") = "Pixel2D", "Assembly-CSharp-Editor-firstpass.csproj", "{989B772A-23F7-1DEF-74A4-3DC05759E388}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA4441D4-FADB-0F2E-C184-F60C23B1488E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4441D4-FADB-0F2E-C184-F60C23B1488E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4441D4-FADB-0F2E-C184-F60C23B1488E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4441D4-FADB-0F2E-C184-F60C23B1488E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D017100F-1DBC-CA12-69EA-D311ED9DAF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D017100F-1DBC-CA12-69EA-D311ED9DAF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D017100F-1DBC-CA12-69EA-D311ED9DAF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D017100F-1DBC-CA12-69EA-D311ED9DAF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{989B772A-23F7-1DEF-74A4-3DC05759E388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{989B772A-23F7-1DEF-74A4-3DC05759E388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{989B772A-23F7-1DEF-74A4-3DC05759E388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{989B772A-23F7-1DEF-74A4-3DC05759E388}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Pixel_2D_Sprites.unity
+  isLoaded: 1
+  isActive: 1
