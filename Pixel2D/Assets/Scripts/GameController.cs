@@ -8,19 +8,19 @@ public class GameController : MonoBehaviour
 	public int hazardCount;
 
 	public GUIText scoreText;
-	public GUIText restartText;
-	public GUIText gameOverText;
-
-	private bool gameOver;
-	private bool restart;
+//	public GUIText restartText;
+//	public GUIText gameOverText;
+//
+//	private bool gameOver;
+//	private bool restart;
 	private int score;
 
 	void Start ()
 	{
-		gameOver = false;
-		restart = true;
-		//restartText.text = "";
-		gameOverText.text = "";
+//		gameOver = false;
+//		restart = true;
+//		//restartText.text = "";
+//		gameOverText.text = "";
 		score = 0;
 		UpdateScore ();
 
@@ -50,14 +50,14 @@ public class GameController : MonoBehaviour
 		scoreText.text = "Score: " + score;
 	}
 
-	public void Restart ()
-	{
-		restartText.text = "Restart";
-		restart = true;
-	}
-	public void GameOver ()
-	{
-		gameOverText.text = "Game Over!";
-		gameOver = true;
-	}
+//	public void Restart ()
+//	{
+//		restartText.text = "Restart";
+//		restart = true;
+//	}
+//	public void GameOver ()
+//	{
+//		gameOverText.text = "Game Over!";
+//		gameOver = true;
+
 }

@@ -10,21 +10,19 @@ public class LoadLevel : MonoBehaviour {
 	//void Start () {
 	//SceneManager.LoadScene ("SceneName", LoadSceneMode.Additive);
 
-	void Update ()
-	{
-if (restart)
-	{
-if (Input.GetKeyDown (KeyCode.R))
+//	void Update ()
+//	{
+//if (restart)
+//	{
+//if (Input.GetKeyDown (KeyCode.R))
+//{
+//	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+//}
+//}
+//}
+
+public void clickMe ()
 {
-	SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	Application.LoadLevel ("Pixel_2D_Sprites");
 }
-}
-}
-
-
-
-	//void Update ()
-	//{
-	//	Application.LoadLevel ("Pixel_2D_Sprites");
-	//}
 }
