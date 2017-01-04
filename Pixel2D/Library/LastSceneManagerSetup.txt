@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Pixel_Vaccuum .unity
+- path: Assets/Scenes/Game-c#.unity
   isLoaded: 1
   isActive: 1
