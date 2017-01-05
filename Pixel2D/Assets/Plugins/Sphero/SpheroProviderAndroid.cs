@@ -14,14 +14,19 @@ public class SpheroProviderAndroid : SpheroProvider {
 	 * Get the Robot Provider for Android 
 	 */
 	public SpheroProviderAndroid() : base() {
-		
-		// The SDK uses alot of handlers that need a valid Looper in the thread, so set that up here
+
+        // The SDK uses alot of handlers that need a valid Looper in the thread, so set that up here
+
+        Debug.Log(string.Format("Preparing"));
         using (AndroidJavaClass jc = new AndroidJavaClass("android.os.Looper"))
         {
-        	jc.CallStatic("prepare");
+            if (jc.CallStatic<AndroidJavaObject>("myLooper") == null)
+            {
+                jc.CallStatic("prepare");
+            }
         }
-		
-		using (AndroidJavaClass jc = new AndroidJavaClass("orbotix.robot.base.RobotProvider"))
+
+        using (AndroidJavaClass jc = new AndroidJavaClass("orbotix.robot.base.RobotProvider"))
 	    {
 			m_RobotProvider = jc.CallStatic<AndroidJavaObject>("getDefaultProvider");
 		}

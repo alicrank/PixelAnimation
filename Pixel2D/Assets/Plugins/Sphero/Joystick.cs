@@ -31,9 +31,7 @@ public class Joystick : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-
-		Debug.Log ("PIXEL started yay");
-
+		
 		m_Spheros = SpheroProvider.GetSharedProvider().GetConnectedSpheros();
 		
 		startScreenSize = new Vector2(Camera.main.pixelRect.width,Camera.main.pixelRect.height);
@@ -58,9 +56,6 @@ public class Joystick : MonoBehaviour {
 		transform.position = originalTransformPos;
 		// Make the joystick scale a certain (joystickScale)% of the limiting dimension
 		float limitingScaledDimension = Mathf.Min(startScreenSize.x,startScreenSize.y)*joystickScale;
-
-		Debug.Log ("PIXEL start screen size =" + startScreenSize);
-
 		float puckScale = 0.32f;
 		
 		Rect backgroundRect = new Rect(-limitingScaledDimension*0.5f, -limitingScaledDimension*0.5f,
@@ -70,32 +65,30 @@ public class Joystick : MonoBehaviour {
 								 limitingScaledDimension*puckScale, limitingScaledDimension*puckScale);
 		puck.pixelInset = puckRect;
 		
-//		// Store the default rect for the gui, so we can snap back to it
+		// Store the default rect for the gui, so we can snap back to it
 		defaultRect = puck.pixelInset;	
-		defaultRect.x += startScreenSize.x*.5f;
-		defaultRect.y += startScreenSize.y*.2f;
-
+		defaultRect.x += transform.position.x * startScreenSize.x;
+		defaultRect.y += transform.position.y * startScreenSize.y;
+		
 		defaultBackRect = background.pixelInset;
-		defaultBackRect.x +=  startScreenSize.x*.5f;
-		defaultBackRect.y += startScreenSize.y*.2f;
+		defaultBackRect.x += transform.position.x * startScreenSize.x;
+		defaultBackRect.y += transform.position.y * startScreenSize.y;
 		transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 					
-//		// This is an offset for touch input to match with the top left
-//		// corner of the GUI
+		// This is an offset for touch input to match with the top left
+		// corner of the GUI
 		guiTouchOffset.x = defaultRect.width * 0.5f;
 		guiTouchOffset.y = defaultRect.height * 0.5f;
 		
 		// Cache the center of the GUI, since it doesn't change
 		guiCenter.x = defaultRect.x + guiTouchOffset.x;
 		guiCenter.y = defaultRect.y + guiTouchOffset.y;
-
-
+		
 		// Let's build the GUI boundary, so we can clamp joystick movement
 		guiBoundary.min.x = defaultBackRect.x;
 		guiBoundary.max.x = defaultBackRect.x + defaultBackRect.width;
 		guiBoundary.min.y = defaultBackRect.y;
 		guiBoundary.max.y = defaultBackRect.y + defaultBackRect.height;
-
 	}
 	
 	bool IsFingerDown()

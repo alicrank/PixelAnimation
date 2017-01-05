@@ -27,8 +27,13 @@ public class NoSpheroConnectedView : MonoBehaviour {
 	
 	// UI Padding Variables
 	int m_ViewPadding = 20;
-	
-	void Start () {	
+    private ThreadSafeLoadLevel m_threadSafeLoadLevel;
+    void Awake()
+    {
+        m_threadSafeLoadLevel = ThreadSafeLoadLevel.Instance;
+    }
+
+    void Start () {	
 		ViewSetup();
 	}
 	
@@ -58,9 +63,14 @@ public class NoSpheroConnectedView : MonoBehaviour {
 	{
 		SpheroDeviceNotification message = (SpheroDeviceNotification)eventArgs.Message;
 		if( message.NotificationType == SpheroDeviceNotification.SpheroNotificationType.CONNECTED ) {
-			// Go to the desired scene
-			Application.LoadLevel (m_NextLevel); 
-		}
+            // Go to the desired scene
+            {
+                if (m_threadSafeLoadLevel != null)
+                {
+                    m_threadSafeLoadLevel.LoadLevel("NoSpheroConnectedScene");
+                }
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -125,8 +135,13 @@ public class NoSpheroConnectedView : MonoBehaviour {
 		getASpheroButtonY = backgroundY+(backgroundHeight*0.85f) - (buttonHeight/2);
 		// If the get a Sphero button is clicked
 		if( GUI.Button (new Rect(getASpheroButtonX, getASpheroButtonY,buttonWidth,buttonHeight), "") ) {
-			Application.LoadLevel("SpheroConnectionScene");
-		}
+            {
+                if (m_threadSafeLoadLevel != null)
+                {
+                    m_threadSafeLoadLevel.LoadLevel("NoSpheroConnectedScene");
+                }
+            }
+        }
 #endif		
 	}
 }
