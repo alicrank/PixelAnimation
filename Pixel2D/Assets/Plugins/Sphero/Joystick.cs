@@ -66,14 +66,15 @@ public class Joystick : MonoBehaviour {
 		puck.pixelInset = puckRect;
 		
 		// Store the default rect for the gui, so we can snap back to it
-		defaultRect = puck.pixelInset;	
-		defaultRect.x += transform.position.x * startScreenSize.x;
-		defaultRect.y += transform.position.y * startScreenSize.y;
-		
-		defaultBackRect = background.pixelInset;
-		defaultBackRect.x += transform.position.x * startScreenSize.x;
-		defaultBackRect.y += transform.position.y * startScreenSize.y;
-		transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+		defaultRect = puck.pixelInset;
+        defaultRect = puck.pixelInset;
+        defaultRect.x += startScreenSize.x * .5f;
+        defaultRect.y += startScreenSize.y * .2f;
+
+        defaultBackRect = background.pixelInset;
+        defaultBackRect.x += startScreenSize.x * .5f;
+        defaultBackRect.y += startScreenSize.y * .2f;
+        transform.position = new Vector3(0.0f, 0.0f, 0.0f); 
 					
 		// This is an offset for touch input to match with the top left
 		// corner of the GUI
