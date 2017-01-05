@@ -156,7 +156,7 @@ public class PlayerManager : MonoBehaviour {
 	/// Make some hit particle effects
 	///***********************************************************************
 	void makeSparks (){
-		Instantiate(sparksFX, transform.position + new Vector3(Random.value/3,0,Random.value/3), Quaternion.Euler(new Vector3(-90, 0, 0)));
+		Instantiate(sparksFX, transform.position + new Vector3(Random.value/3,0,Random.value/3), Quaternion.Euler(new Vector3(90, 0, 0)));
 	}
 
 	void playSfx ( AudioClip _sfx  ){
