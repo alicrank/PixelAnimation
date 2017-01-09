@@ -83,6 +83,10 @@ public class PauseManager : MonoBehaviour {
 						UnPauseGame(); 
 						Application.LoadLevel("Menu");
 						break;
+					case "btnExit":
+						UnPauseGame ();
+						Application.Quit();
+						break;
 				}
 			}
 		}

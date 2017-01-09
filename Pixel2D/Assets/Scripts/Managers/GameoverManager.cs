@@ -6,14 +6,22 @@ public class GameoverManager : MonoBehaviour {
 	///***********************************************************************
 	/// GameOver Manager Class. 
 	///***********************************************************************
+	private int bestScore;
+	public GameObject bestScoreText;
 
 	public GameObject scoreText;			//reference to score gameobject to modify its text
 	public AudioClip menuTap;
 	private bool canTap;
 	private float buttonAnimationSpeed = 9;
 
+
+
 	void Awake (){
 		canTap = true;
+
+
+		bestScore = PlayerPrefs.GetInt("bestScore");
+		bestScoreText.GetComponent<TextMesh>().text = bestScore.ToString();
 	}
 
 	void Update (){	

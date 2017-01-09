@@ -10,8 +10,8 @@ public class HelperController : MonoBehaviour {
 
 	//Difficulty
 	public static float helperSpeed = 0.95f; 		//helper screll speed on screen
-	private float helperCloneIntervalMin = 10.0f;	//Min
-	private float helperCloneIntervalMax = 20.0f; 	//Max
+	private float helperCloneIntervalMin = 5.0f;	//Min
+	private float helperCloneIntervalMax = 10.0f; 	//Max
 
 	//Pool of helper objects
 	public GameObject[] helpers;

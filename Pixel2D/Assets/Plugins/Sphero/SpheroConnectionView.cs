@@ -133,11 +133,11 @@ public class SpheroConnectionView : MonoBehaviour {
 		
 		// Search for paired robots
 		if( !m_SpheroProvider.IsAdapterEnabled() ) {
-			m_Title = "Bluetooth Not Enabled";
+			m_Title = "BLUETOOTH NOT ENABLED";
 			m_RobotNames = new string[0];
 		}
 		else {
-			m_Title = "Connect to a Sphero";
+			m_Title = "CONNECT TO A SPHERO";
 			// Refreshes the list of robots
 			m_SpheroProvider.FindRobots();
 			
@@ -168,7 +168,7 @@ public class SpheroConnectionView : MonoBehaviour {
 			
 			// Connect to the robot and move to the next scene designated by the developer
 			if( !m_MultipleSpheros ) {
-				m_Title = "Connection Success";
+				m_Title = "CONNECTION SUCCESS";
 				SpheroDeviceMessenger.SharedInstance.NotificationReceived -= ReceiveNotificationMessage;
                 {
                     if (m_threadSafeLoadLevel != null)
@@ -182,7 +182,7 @@ public class SpheroConnectionView : MonoBehaviour {
 			Sphero notifiedSphero = m_SpheroProvider.GetSphero(message.RobotID);
 			// Connection only has failed if we are trying to connect to that robot the notification belongs to
 			if( m_ConnectingRobotName.Equals(notifiedSphero.DeviceInfo.Name)) {
-				m_Title = "Connection Failed";
+				m_Title = "CONNECTION FAILED";
 			}
 		}
 	}
@@ -258,7 +258,7 @@ public class SpheroConnectionView : MonoBehaviour {
 		m_SpheroProvider.Connect(row);
 		// Adjust title info
 		m_SpheroLabelSelected = row;
-		m_Title = "Connecting to " + m_RobotNames[m_SpheroLabelSelected];	
+		m_Title = "CONNECTING TO " + m_RobotNames[m_SpheroLabelSelected];	
 		m_ConnectingRobotName = m_RobotNames[m_SpheroLabelSelected];
 	}
 	
@@ -283,7 +283,7 @@ public class SpheroConnectionView : MonoBehaviour {
         GUI.Window(0, windowRect, (GUI.WindowFunction)DoWindow, "");
 		
 		// Set up the Connect or Done Button
-		string buttonLabel = "Connect";
+		string buttonLabel = "CONNECT";
 		if( m_MultipleSpheros ) {
 			buttonLabel = "Done";	
 		}
