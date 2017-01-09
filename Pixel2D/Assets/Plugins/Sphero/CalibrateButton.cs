@@ -79,9 +79,9 @@ public class CalibrateButton : MonoBehaviour {
 		guiInnerRingRect = new Rect(buttonMid.x-innerSize*0.5f,Screen.height - (buttonRect.y+(ringSize-innerSize)*0.5f) - innerSize,innerSize,innerSize);
 		
 		// Store the center of these elements for future access
-		ringCenter = new Vector2(ringRect.x+ringRect.width*0.5f,ringRect.y+ringRect.height*0.5f);
-		guiRingCenter = new Vector2(ringRect.x+ringRect.width*0.5f, (Screen.height - ringRect.y) - ringRect.height*0.5f);
-		buttonCenter = new Vector2(buttonRect.x+buttonRect.width*0.5f,buttonRect.y+buttonRect.height*0.5f);
+		ringCenter = new Vector2(ringRect.x+ringRect.width*0.2f,ringRect.y+ringRect.height*0.2f);
+		guiRingCenter = new Vector2(ringRect.x+ringRect.width*0.2f, (Screen.height - ringRect.y) - ringRect.height*0.2f);
+		buttonCenter = new Vector2(buttonRect.x+buttonRect.width*0.2f,buttonRect.y+buttonRect.height*0.2f);
 	}
 	
 	/* Set the GUI rings' visibility */

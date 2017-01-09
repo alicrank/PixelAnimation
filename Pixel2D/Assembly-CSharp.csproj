@@ -85,6 +85,10 @@
  <HintPath>/Users/allisoncrank/PixelAnimation/Pixel2D/Assets/Plugins/Sphero/JsonFx.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{BA4441D4-FADB-0F2E-C184-F60C23B1488E}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

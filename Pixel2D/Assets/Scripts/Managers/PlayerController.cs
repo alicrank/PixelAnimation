@@ -60,16 +60,16 @@ public class PlayerController : MonoBehaviour {
 			                                 transform.position.z);
 			
 			//prevent player from exiting the view (downside)
-			if(transform.position.z < 1.1f) 
+			if(transform.position.z < .1f) 
 				transform.position = new Vector3(transform.position.x,
 				                                 transform.position.y,
-				                                 1.1f);
+				                                 .1f);
 			
 			//prevent player from exiting the view (Upside)
-			if(transform.position.z > 5f) 
+			if(transform.position.z > 5.2f) 
 				transform.position = new Vector3(transform.position.x,
 				                                 transform.position.y,
-				                                 5f);
+				                                 5.2f);
 			
 			//left/right movement limiter
 			if(transform.position.x > 2.9f) 
