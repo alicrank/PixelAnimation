@@ -8,7 +8,7 @@ public class GlobalObjectMover : MonoBehaviour {
 	///***********************************************************************
 
 	public float speed = 1.9f;
-	public float destroyThreshold = 1.0f;
+	public float destroyThreshold = -9.0f;
 
 	void Update (){
 		//Scroll down the object
