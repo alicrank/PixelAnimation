@@ -25,7 +25,8 @@ public class Joystick : MonoBehaviour {
 	private float lastHeading = 0.0f;					// The last heading Sphero traveled in
 	private Vector2 startScreenSize;					// The size of the screen on start
 	private Vector3 originalTransformPos;				// The original transform position
-	
+    public float currentHeadingRad;
+    public bool updatePixel;
 	/* List of connected Spheros */
 	Sphero[] m_Spheros;
 	
@@ -144,15 +145,18 @@ public class Joystick : MonoBehaviour {
 				// Latch the finger if this is a new touch
 				if ( shouldLatchFinger && ( lastFingerId == -1 || lastFingerId != touch.fingerId ) )
 				{
-					lastFingerId = touch.fingerId;					
-				}				
+					lastFingerId = touch.fingerId;
+                    updatePixel=false;
+                }				
 		
 				if ( lastFingerId == touch.fingerId )
-				{	
+				{
+                    updatePixel = true;
 					// Change the location of the joystick graphic to match where the touch is
 					Vector2 clampedPosition = touch.position - guiTouchOffset;
 					
 					headingRad = Mathf.Atan2(touch.position.y-guiCenter.y, touch.position.x-guiCenter.x);
+                    currentHeadingRad = headingRad;
 					touchRadius = (touch.position-guiCenter).magnitude;
 					
 					// Clamp circular boundaries	
@@ -170,7 +174,7 @@ public class Joystick : MonoBehaviour {
 					float degrees = 360 - (Mathf.Rad2Deg * headingRad);
 				
 					float velocity = touchRadius / radius;
-					#if !UNITY_EDITOR
+#if !UNITY_EDITOR
 						velocity = velocity * velocityScale;
 						if(velocity > velocityScale) {
 							velocity = velocityScale;
@@ -182,10 +186,13 @@ public class Joystick : MonoBehaviour {
 							stopped = false;
 							lastHeading = degrees;
 						}
-					#endif
-					
-					if ( touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled )
-						ResetJoystick();					
+#endif
+
+                    if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                    {
+                        ResetJoystick();
+                        updatePixel = false;
+                    }					
 				}	
 				
 				firstTouch = false;
