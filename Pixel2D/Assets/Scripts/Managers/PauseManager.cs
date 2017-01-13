@@ -86,6 +86,7 @@ public class PauseManager : MonoBehaviour {
 					case "btnExit":
 						UnPauseGame ();
 						Application.Quit();
+						SpheroProvider.GetSharedProvider().DisconnectSpheros();
 						break;
 				}
 			}

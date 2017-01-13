@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/HelperController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/PauseManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Movers/GlobalObjectMover.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/PlayerController.cs" Line="69" Column="33" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/Sphero/Joystick.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Movers/GlobalObjectMover.cs" Line="11" Column="38" />
       <File FileName="Assets/Plugins/Sphero/SpheroConnectionView.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/HelperController.cs" Line="42" Column="50" />
+      <File FileName="Assets/Scripts/Managers/HelperController.cs" Line="14" Column="42" />
+      <File FileName="Assets/Scripts/Managers/GameController.cs" Line="196" Column="28" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="54" Column="105" />
+      <File FileName="Assets/Scripts/Managers/EnemyMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/MenuManager.cs" Line="10" Column="23" />
+      <File FileName="Assets/Scripts/Managers/PauseManager.cs" Line="84" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameoverManager.cs" Line="30" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
