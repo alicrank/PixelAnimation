@@ -124,11 +124,12 @@ public class PlayerManager : MonoBehaviour {
 					Destroy(other.gameObject);
 					break;
 
-				default:
-					playSfx(hitSfx);
-					makeSparks();
-					playerHealth--;
-					monitorPlayerHealth();
+			default:
+				playSfx (hitSfx);
+				makeSparks ();
+				playerHealth--;
+				monitorPlayerHealth ();
+
 					
 					//just for Android & iOS
 					#if UNITY_IPHONE || UNITY_ANDROID
