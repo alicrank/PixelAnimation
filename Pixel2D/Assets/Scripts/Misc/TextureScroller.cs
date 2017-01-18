@@ -16,5 +16,6 @@ public class TextureScroller : MonoBehaviour {
 	void LateUpdate (){
 		offset +=  GameController.moveSpeed * damper * Time.deltaTime * coef;
 		GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(0,offset));
+
 	}
 }
