@@ -30,11 +30,11 @@ public class SpheroConnectionView : MonoBehaviour {
 	int m_ElementPadding = 10;
 	
 	// Button Size Variables
-	int m_ButtonWidth = 200;
-	int m_ButtonHeight = 55;
+	int m_ButtonWidth = 300;
+	int m_ButtonHeight = 100;
 	
 	// Title Variables
-	int m_TitleHeight = 40;
+	int m_TitleHeight = 200;
 	string m_Title;
 	
 	// Sphero Name Label Variable
