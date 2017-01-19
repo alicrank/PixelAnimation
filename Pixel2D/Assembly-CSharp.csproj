@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InfoBall.cs" />
+     <Compile Include="Assets\MenuController.cs" />
      <Compile Include="Assets\Scripts\Managers\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Managers\GameController.cs" />
      <Compile Include="Assets\Scripts\Managers\GameoverManager.cs" />

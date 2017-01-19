@@ -81,13 +81,18 @@ public class PauseManager : MonoBehaviour {
 						
 					case "menuButtonPause":
 						UnPauseGame(); 
-						Application.LoadLevel("Menu");
+						//Application.LoadLevel("Menu-c#");
 						break;
 					case "btnExit":
 						UnPauseGame ();
 						Application.Quit();
 						SpheroProvider.GetSharedProvider().DisconnectSpheros();
 						break;
+					case "btnMenu":
+						UnPauseGame(); 
+						Application.LoadLevel("Menu-c#");
+						break;
+						
 				}
 			}
 		}
