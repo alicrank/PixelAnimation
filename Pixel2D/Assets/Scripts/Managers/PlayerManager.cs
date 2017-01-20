@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
 		
@@ -25,10 +27,17 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject sparksFX;
 	public GameObject scoreTextDynamic;
 
+	//Timer references
+	//private float time;
+
+
+
+
 	void Awake (){
 		playerHealth = 3;
 		playerScore = 0;
 		reborn = false;
+
 										
 		//Disable screen dimming on handheld devices
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -36,15 +45,21 @@ public class PlayerManager : MonoBehaviour {
 		//Fill all healthIcons
 		foreach(GameObject item in healthIcons) {
 			item.GetComponent<Renderer>().enabled = true;
+		
+	
+
 		}
 	}
 
 		
 	void Update (){
 		
-		if(!GameController.gameOver)
-			calculateScore();
+		if (!GameController.gameOver && Time.frameCount % 5 == 0)
+			calculateScore ();
 	}
+
+
+			
 
 	///***********************************************************************
 	/// calculate players score
@@ -55,6 +70,7 @@ public class PlayerManager : MonoBehaviour {
 			scoreTextDynamic.GetComponent<TextMesh>().text = playerScore.ToString();
 		}
 	}
+
 
 	///***********************************************************************
 	/// Process and show player's health on screen

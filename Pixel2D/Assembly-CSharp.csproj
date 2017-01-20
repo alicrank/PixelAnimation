@@ -46,12 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\InfoBall.cs" />
-     <Compile Include="Assets\MenuController.cs" />
+     <Compile Include="Assets\InfoPlane.cs" />
      <Compile Include="Assets\Scripts\Managers\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Managers\GameController.cs" />
      <Compile Include="Assets\Scripts\Managers\GameoverManager.cs" />
      <Compile Include="Assets\Scripts\Managers\HelperController.cs" />
+     <Compile Include="Assets\Scripts\Managers\InfoBall.cs" />
+     <Compile Include="Assets\Scripts\Managers\MenuController.cs" />
      <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PauseManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlayerController.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Misc\LogoBlurFader.cs" />
      <Compile Include="Assets\Scripts\Misc\SplashScreen.cs" />
      <Compile Include="Assets\Scripts\Misc\TextureScroller.cs" />
+     <Compile Include="Assets\Scripts\Misc\Timer.cs" />
      <Compile Include="Assets\Scripts\Movers\GlobalObjectMover.cs" />
      <Compile Include="Assets\Scripts\Movers\LaserHolderMover.cs" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />

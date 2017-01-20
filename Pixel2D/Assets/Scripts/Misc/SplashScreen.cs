@@ -1,47 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-//
-// SplashScreen Script
-//
-// Version 0.1 by Martijn Dekker
-// martijn.pixelstudio@gmail.com
-//
-// Version 0.2 by Ferdinand Joseph Fernandez, 2010Sep7 16:45 GMT + 8
-// Changes:
-//  * changed levelToLoad to a string, for easier usage
-//  * added waitTime, which adds a pause after fade in, and before fade
-//    out (during fade waiting)
-//  * added option to either automatically fade out after waitTime
-//    seconds (default), or wait for user input (press any key to continue)
-//  * added option to wait until fade out is complete before loading next
-//    level, instead of the default, which is to load the next level
-//    before fade out
-//
-// Version 0.3 by Ferdinand Joseph Fernandez, 2010Sep8 01:13 GMT + 8
-// Changes:
-//  * splash screen itself is now fading without the need for a solid
-//    background color
-//  * optimized some code
-//
-// Version 0.4 by Ferdinand Joseph Fernandez, 2010Sep14 14:09 GMT + 8
-// Changes:
-//  * splash screen picture can now be either centered (default) or
-//    stretched on the screen
-//
-// Version 0.5 by Ferdinand Joseph Fernandez, 2010Sep15 18:27 GMT + 8
-// Changes:
-//  * now has option to start automatically or not. if not started
-//    automatically, the splash screen can be started by calling
-//    the StartSplash function
-//  * code acknowledges if the levelToLoad is blank, in that case,
-//    the code simply does not attempt to load a level
-//
-// Version 0.6 by Ferdinand Joseph Fernandez, 2010Sep29 13:43 GMT + 8
-// Changes:
-//  * added the property "gui depth" so you can control at which depth the
-//    splash screen shows in
-//
 
 public class SplashScreen : MonoBehaviour
 {
@@ -122,10 +82,11 @@ public class SplashScreen : MonoBehaviour
 			DontDestroyOnLoad(this);
 			DontDestroyOnLoad(Camera.main);
 		}
-		if ((Application.levelCount <= 1) || (levelToLoad == ""))
-		{
+	//	if ((Application.levelCount <= 1) || (levelToLoad == ""))
+
+	//	{
 			Debug.LogWarning("Invalid levelToLoad value.");
-		}
+	//	}
 	}
 
 	public void StartSplash()
@@ -168,9 +129,9 @@ public class SplashScreen : MonoBehaviour
 				{
 					oldCam.depth = -1000;
 					loadingNextLevel = true;
-					if ((Application.levelCount >= 1) && (levelToLoad != ""))
+					if ((SceneManager.sceneCountInBuildSettings >= 1) && (levelToLoad != ""))
 					{
-						Application.LoadLevel(levelToLoad);
+						SceneManager.LoadScene ("SphereoConnectionScene");
 					}
 				}
 			}
@@ -178,9 +139,9 @@ public class SplashScreen : MonoBehaviour
 			{
 				if (splashType == SplashType.FadeOutThenLoadNextLevel)
 				{
-					if ((Application.levelCount >= 1) && (levelToLoad != ""))
+					if ((SceneManager.sceneCountInBuildSettings >= 1) && (levelToLoad != ""))
 					{
-						Application.LoadLevel(levelToLoad);
+						SceneManager.LoadScene ("SphereoConnectionScene");
 					}
 				}
 				else

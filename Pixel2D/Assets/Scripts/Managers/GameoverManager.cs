@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameoverManager : MonoBehaviour {
 
@@ -13,7 +14,6 @@ public class GameoverManager : MonoBehaviour {
 	public AudioClip menuTap;
 	private bool canTap;
 	private float buttonAnimationSpeed = 9;
-
 
 
 	void Awake (){
@@ -31,6 +31,7 @@ public class GameoverManager : MonoBehaviour {
 		
 		if(canTap)
 			StartCoroutine(tapManager());
+
 	}
 	///***********************************************************************
 	/// Manage user taps on gameover buttons
@@ -56,15 +57,15 @@ public class GameoverManager : MonoBehaviour {
 					saveScore();				//save players best and last score
 					StartCoroutine(animateButton(objectHit));	//animate the button
 					yield return new WaitForSeconds(0.4f);	//Wait
-					Application.LoadLevel(Application.loadedLevelName); //Load next level
+					SceneManager.LoadScene ("Game-c#");		
 					break;
-				case "menuButton":
-					playSfx(menuTap);
-					saveScore();
-					StartCoroutine(animateButton(objectHit));
-					yield return new WaitForSeconds(1.0f);
-					Application.LoadLevel("Menu-c#");
-					break;
+			case "menuButton":
+				playSfx (menuTap);
+				saveScore ();
+				StartCoroutine (animateButton (objectHit));
+				yield return new WaitForSeconds (1.0f);
+				SceneManager.LoadScene ("Menu-c#");	
+				break;
 			}	
 		}
 	}
@@ -82,6 +83,11 @@ public class GameoverManager : MonoBehaviour {
 			PlayerPrefs.SetInt("bestScore", PlayerManager.playerScore);
 	}
 
+//	public static void KillSquirrelAttack() 
+//	{
+//			GetComponent(co.name == "Squirrel Attack")
+//			
+//	}
 	///***********************************************************************
 	/// Animate buttons on touch
 	///***********************************************************************
@@ -122,5 +128,6 @@ public class GameoverManager : MonoBehaviour {
 		if(!GetComponent<AudioSource>().isPlaying)
 			GetComponent<AudioSource>().Play();
 	}
+
 
 }

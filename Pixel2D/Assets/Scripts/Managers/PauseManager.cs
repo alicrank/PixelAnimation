@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour {
 		
@@ -46,7 +47,7 @@ public class PauseManager : MonoBehaviour {
 		
 		//debug restart
 		if(Input.GetKeyDown(KeyCode.R)) {
-			Application.LoadLevel(Application.loadedLevelName);
+			SceneManager.LoadScene ("Game-c#");	
 		}
 	}
 
@@ -74,10 +75,10 @@ public class PauseManager : MonoBehaviour {
 				        }
 						break;
 						
-					case "retryButtonPause":
-						UnPauseGame(); 
-						Application.LoadLevel(Application.loadedLevelName);
-						break;
+				case "retryButtonPause":
+					UnPauseGame (); 
+					SceneManager.LoadScene ("Game-c#");							
+					break;
 						
 					case "menuButtonPause":
 						UnPauseGame(); 
@@ -90,7 +91,7 @@ public class PauseManager : MonoBehaviour {
 						break;
 					case "btnMenu":
 						UnPauseGame(); 
-						Application.LoadLevel("Menu-c#");
+						SceneManager.LoadScene ("Menu-c#");	
 						break;
 						
 				}

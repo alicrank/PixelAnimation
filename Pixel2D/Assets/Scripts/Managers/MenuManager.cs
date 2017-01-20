@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
@@ -71,7 +72,7 @@ public class MenuManager : MonoBehaviour {
 					playSfx(menuTap);
 					StartCoroutine(animateButton(objectHit));
 					yield return new WaitForSeconds(1.0f);
-					Application.LoadLevel("Game-c#");
+					SceneManager.LoadScene ("Game-c#");
 					break;
 					
 				case "btnExit":
@@ -81,6 +82,23 @@ public class MenuManager : MonoBehaviour {
 					yield return new WaitForSeconds(1.0f);
 					Application.Quit();
 					break;
+
+				case "btnInfo":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
+					//Application.Quit();
+					break;
+			
+				case "btnRank":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
+					//Application.Quit();
+					break;
+
 				
 				case "ControlTypeLabel":
 					playSfx(menuTap);
