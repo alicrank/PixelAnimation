@@ -1,0 +1,3 @@
+[submodule "pixelWebConsole"]
+	path = pixelWebConsole
+	url = https://github.com/terrinoculon/pixelWebConsole.git
