@@ -29,7 +29,7 @@ public class Joystick : MonoBehaviour {
     public bool updatePixel;
 	/* List of connected Spheros */
 	Sphero[] m_Spheros;
-	
+
 	// Use this for initialization
 	void Start () {
 		

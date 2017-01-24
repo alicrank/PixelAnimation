@@ -1,12 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/Sphero/SpheroConnectionView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/GameoverManager.cs">
     <Files>
-      <File FileName="Assets/Plugins/Sphero/SpheroConnectionView.cs" Line="61" Column="45" />
-      <File FileName="Assets/Scripts/Managers/EnemyMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/PlayerController.cs" Line="84" Column="58" />
+      <File FileName="Assets/Scripts/Managers/EnemyMovement.cs" Line="44" Column="3" />
+      <File FileName="Assets/Plugins/Sphero/SpheroConnectionView.cs" Line="1" Column="1" />
       <File FileName="Assets/Plugins/Sphero/Joystick.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="160" Column="133" />
-      <File FileName="Assets/Scripts/Misc/TextureScroller.cs" Line="19" Column="3" />
+      <File FileName="Assets/Scripts/Managers/PlayerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Misc/TextureScroller.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameoverManager.cs" Line="60" Column="32" />
+      <File FileName="Assets/Scripts/Managers/MenuManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Misc/SplashScreen.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

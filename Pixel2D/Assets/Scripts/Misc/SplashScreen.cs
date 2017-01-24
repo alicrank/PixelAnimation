@@ -82,11 +82,11 @@ public class SplashScreen : MonoBehaviour
 			DontDestroyOnLoad(this);
 			DontDestroyOnLoad(Camera.main);
 		}
-	//	if ((Application.levelCount <= 1) || (levelToLoad == ""))
+		if ((SceneManager.sceneCountInBuildSettings <= 1) || (levelToLoad == ""))
 
-	//	{
+	{
 			Debug.LogWarning("Invalid levelToLoad value.");
-	//	}
+		}
 	}
 
 	public void StartSplash()

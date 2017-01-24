@@ -8,12 +8,12 @@ using System.Collections;
 		//public float speed = 0.3f;
 		public float speed;
 
-	private float minStep = .0001f;
+	private float minStep = .0008f;
 	private float maxStep = 1f;
 
 	void FixedUpdate () {
 		float step = speed * Time.time * .001f;
-		Debug.Log (step);
+	//	Debug.Log (step);
 		if (step < minStep) {
 			step = minStep;
 		}
