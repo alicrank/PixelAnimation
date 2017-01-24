@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour {
 	private float speed = 1.0f;
 	private Vector3 dir = Vector3.zero;
 	private Vector3 screenToWorldVector;
-
+    public string url;
+    private WWW www_;
+    private string cheading_;
 	Vector3 dest = Vector3.zero;
 
 	void Awake (){
@@ -36,11 +38,25 @@ public class PlayerController : MonoBehaviour {
 		                                 0.5f,
 		                                 transform.position.z);
 		dest = transform.position;
+        url = "http://192.168.8.102:5000/heading";
+        
+        StartCoroutine(WaitForHeading());
 	}
+    public IEnumerator WaitForHeading()
+    {
+        while (true)
+        {
+            WWW mpage = new WWW(url);
+            yield return mpage;
+            cheading_ = mpage.text;
+        }
+    }
+
+
 	void Update (){
         if (!GameController.gameOver)
         {
-            if (mJoystick.updatePixel)
+            //if (mJoystick.updatePixel)
             {
                 //if(controlType == 0)
                 tiltControl();
@@ -97,13 +113,18 @@ public class PlayerController : MonoBehaviour {
 	/// Control playerShip's position by acceleration sensors
 	///***********************************************************************
 	void tiltControl (){
-        dir.x = Mathf.Cos(mJoystick.currentHeadingRad);
-		dir.y = Mathf.Sin(mJoystick.currentHeadingRad);
-		if(dir.sqrMagnitude > 1) 
-			dir.Normalize();	
-		dir *= Time.deltaTime;
-		transform.Translate(dir * speed);
-	}
+        
+        Debug.Log("Head");
+        Debug.Log(string.Format(cheading_));
+        Debug.Log("Ing");
+        string heading = cheading_;
+        dir.x = Mathf.Cos(float.Parse(heading));
+        dir.y = Mathf.Sin(float.Parse(heading));
+        if (dir.sqrMagnitude > 1)
+            dir.Normalize();
+        dir *= Time.deltaTime;
+        transform.Translate(dir * speed);
+    }
 	///***********************************************************************
 	/// Control playerShip's position with touch position parameters
 	///***********************************************************************

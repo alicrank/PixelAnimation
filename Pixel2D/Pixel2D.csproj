@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -90,10 +84,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InfoPlane.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Managers\GameController.cs" />
     <Compile Include="Assets\Scripts\Managers\GameoverManager.cs" />
     <Compile Include="Assets\Scripts\Managers\HelperController.cs" />
+    <Compile Include="Assets\Scripts\Managers\InfoBall.cs" />
+    <Compile Include="Assets\Scripts\Managers\MenuController.cs" />
     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerController.cs" />
@@ -104,6 +101,7 @@
     <Compile Include="Assets\Scripts\Misc\LogoBlurFader.cs" />
     <Compile Include="Assets\Scripts\Misc\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\Misc\TextureScroller.cs" />
+    <Compile Include="Assets\Scripts\Misc\Timer.cs" />
     <Compile Include="Assets\Scripts\Movers\GlobalObjectMover.cs" />
     <Compile Include="Assets\Scripts\Movers\LaserHolderMover.cs" />
   </ItemGroup>
