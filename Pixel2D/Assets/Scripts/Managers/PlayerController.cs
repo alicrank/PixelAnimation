@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	//Distance between player and user's finger
 	private int fingerOffset = 100;
-    private bool useCamera = false;
+    private bool useCamera = true;
 	//Private internal variables
 	private float xVelocity = 0.0f;
 	private float zVelocity = 0.0f;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     private WWW www_;
     private string cheading_;
 	Vector3 dest = Vector3.zero;
-
+    private float step=0.0f;
 	void Awake (){
 
 		// get yVelocity  (currentpositiony - previouspositiony) 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 		                                 0.5f,
 		                                 transform.position.z);
 		dest = transform.position;
-        url = "http://192.168.8.102:5000/currentPos";
+        url = "http://192.168.43.130:5000/currentPos";
         
         StartCoroutine(WaitForHeading());
 	}
@@ -64,15 +64,7 @@ public class PlayerController : MonoBehaviour {
                     touchControl();
 
                 //this is just for debug and play in PC and SHOULD be commented at final build
-                //this can also be used to override control type for WebPlayer and Standalone...
-                if (Application.isEditor || Application.isWebPlayer)
-                {
-                    screenToWorldVector = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y + fingerOffset, 10));
-                    float editorX = Mathf.SmoothDamp(transform.position.x, screenToWorldVector.x, ref xVelocity, 0.1f);
-                    float editorZ = Mathf.SmoothDamp(transform.position.z, screenToWorldVector.z, ref zVelocity, 0.1f);
-                    transform.position = new Vector3(editorX, transform.position.y, editorZ);
-                }
-
+                
                 //offset for player
                 transform.position = new Vector3(transform.position.x,
                                                  0.5f,
@@ -114,12 +106,12 @@ public class PlayerController : MonoBehaviour {
 	///***********************************************************************
 	void camControl (){
         string[] pos = cheading_.Split(',');
-        float x = (float.Parse(pos[0]));
+        float x = float.Parse(pos[0]);
         float y = (float.Parse(pos[1]));
-        Debug.Log(string.Format(cheading_));
-        Debug.Log(string.Format(pos[0]));
-        Debug.Log(string.Format(pos[1]));
-        transform.position = new Vector3(x,y, transform.position.z);
+        //Debug.Log(string.Format(cheading_));
+        //Debug.Log(string.Format(pos[0]));
+        //Debug.Log(string.Format(pos[1]));
+        transform.position = new Vector3(x, transform.position.z, y);
     }
 	///***********************************************************************
 	/// Control playerShip's position with touch position parameters
