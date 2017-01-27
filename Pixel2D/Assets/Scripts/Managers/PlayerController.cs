@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	//Distance between player and user's finger
 	private int fingerOffset = 100;
-
+    private bool useCamera = false;
 	//Private internal variables
 	private float xVelocity = 0.0f;
 	private float zVelocity = 0.0f;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 		                                 0.5f,
 		                                 transform.position.z);
 		dest = transform.position;
-        url = "http://192.168.8.102:5000/heading";
+        url = "http://192.168.8.102:5000/currentPos";
         
         StartCoroutine(WaitForHeading());
 	}
@@ -56,12 +56,12 @@ public class PlayerController : MonoBehaviour {
 	void Update (){
         if (!GameController.gameOver)
         {
-            //if (mJoystick.updatePixel)
+            if ((mJoystick.updatePixel) ||( useCamera))
             {
-                //if(controlType == 0)
-                tiltControl();
-                //else
-                //touchControl();
+                if(useCamera)
+                    camControl();
+                else
+                    touchControl();
 
                 //this is just for debug and play in PC and SHOULD be commented at final build
                 //this can also be used to override control type for WebPlayer and Standalone...
@@ -112,30 +112,27 @@ public class PlayerController : MonoBehaviour {
 	///***********************************************************************
 	/// Control playerShip's position by acceleration sensors
 	///***********************************************************************
-	void tiltControl (){
-        
-        Debug.Log("Head");
+	void camControl (){
+        string[] pos = cheading_.Split(',');
+        float x = (float.Parse(pos[0]));
+        float y = (float.Parse(pos[1]));
         Debug.Log(string.Format(cheading_));
-        Debug.Log("Ing");
-        string heading = cheading_;
-        dir.x = Mathf.Cos(float.Parse(heading));
-        dir.y = Mathf.Sin(float.Parse(heading));
-        if (dir.sqrMagnitude > 1)
-            dir.Normalize();
-        dir *= Time.deltaTime;
-        transform.Translate(dir * speed);
+        Debug.Log(string.Format(pos[0]));
+        Debug.Log(string.Format(pos[1]));
+        transform.position = new Vector3(x,y, transform.position.z);
     }
 	///***********************************************************************
 	/// Control playerShip's position with touch position parameters
 	///***********************************************************************
 	void touchControl (){
-		if (Input.touchCount > 0) {
-			screenToWorldVector = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y + fingerOffset, 10));
-			float touchX = Mathf.SmoothDamp(transform.position.x, screenToWorldVector.x, ref xVelocity, 0.1f);
-			float touchZ = Mathf.SmoothDamp(transform.position.z, screenToWorldVector.z, ref zVelocity, 0.1f);
-			transform.position = new Vector3(touchX, transform.position.y, touchZ);
-		}
-	}
+        dir.x = Mathf.Cos(mJoystick.currentHeadingRad);
+		dir.y = Mathf.Sin(mJoystick.currentHeadingRad);
+		if(dir.sqrMagnitude > 1) 
+			dir.Normalize();	
+		dir *= Time.deltaTime;
+		transform.Translate(dir * speed);
+    }
+	
 
 
 	void playSfx ( AudioClip _sfx  ){
