@@ -2,16 +2,13 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour {
+public class MenuSetupAndSpeedManager : MonoBehaviour {
 
 	///*************************************************************************///
 	/// Main Menu Buttons Controller.
 	///*************************************************************************///
 
-	private int bestScore;
-	private int lastScore;
-	public GameObject bestScoreText;	 //we just need the textmesh component
-	public GameObject lastScoreText;	 // ""       ""        ""       ""
+
 	private int controlType = 0;		 // 0=Tilt , 1=Touch
 	public GameObject controlTypeText;
 
@@ -24,18 +21,13 @@ public class MenuManager : MonoBehaviour {
 
 		canTap = true; //player can tap on buttons
 		
-		bestScore = PlayerPrefs.GetInt("bestScore");
-		bestScoreText.GetComponent<TextMesh>().text = bestScore.ToString();
-		
-		lastScore = PlayerPrefs.GetInt("lastScore");
-		lastScoreText.GetComponent<TextMesh>().text = lastScore.ToString();
-		
+
 		//fetch previous controlType set by player, instead of resetting it everytime
 		controlType = PlayerPrefs.GetInt("controlType");
 		if(controlType == 0) {
-			controlTypeText.GetComponent<TextMesh>().text = "Control: Tilt";
+			controlTypeText.GetComponent<TextMesh>().text = "";
 		} else {
-			controlTypeText.GetComponent<TextMesh>().text = "Control: Touch";
+			controlTypeText.GetComponent<TextMesh>().text = "";
 		}
 	}
 
@@ -107,11 +99,11 @@ public class MenuManager : MonoBehaviour {
 					if(controlType == 0) {
 						controlType = 1;
 						PlayerPrefs.SetInt("controlType", controlType);
-						controlTypeText.GetComponent<TextMesh>().text = "Control: Touch";
+						controlTypeText.GetComponent<TextMesh>().text = "slow";
 					} else {
 						controlType = 0;
 						PlayerPrefs.SetInt("controlType", controlType);
-						controlTypeText.GetComponent<TextMesh>().text = "Control: Tilt";
+						controlTypeText.GetComponent<TextMesh>().text = "fast";
 					}
 					
 					yield return new WaitForSeconds(0.6f);
