@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private WWW www_;
     private string cheading_;
 	Vector3 dest = Vector3.zero;
+	private float xx=0.0f;
     private float step=0.0f;
 	void Awake (){
 
@@ -58,9 +59,6 @@ public class PlayerController : MonoBehaviour {
         {
             if ((mJoystick.updatePixel) ||( useCamera))
             {
-                if(useCamera)
-                    camControl();
-                else
                     touchControl();
 
                 //this is just for debug and play in PC and SHOULD be commented at final build
@@ -93,7 +91,15 @@ public class PlayerController : MonoBehaviour {
                                                      transform.position.y,
                                                      transform.position.z);
             }
-            Vector3 dir = dest - (Vector3)transform.position;
+
+			if (useCamera) {
+				string[] pos = cheading_.Split(',');
+				float x = float.Parse(pos[0]);
+				float y = (float.Parse(pos[1]));
+				transform.position = new Vector3(x, transform.position.y, y);
+
+			}
+			Vector3 dir = dest - (Vector3)transform.position;
             GetComponent<Animator>().SetFloat("DirX", dir.x);
             dest = transform.position;
         }
@@ -105,13 +111,9 @@ public class PlayerController : MonoBehaviour {
 	/// Control playerShip's position by acceleration sensors
 	///***********************************************************************
 	void camControl (){
-        string[] pos = cheading_.Split(',');
-        float x = float.Parse(pos[0]);
-        float y = (float.Parse(pos[1]));
-        //Debug.Log(string.Format(cheading_));
-        //Debug.Log(string.Format(pos[0]));
-        //Debug.Log(string.Format(pos[1]));
-        transform.position = new Vector3(x, transform.position.z, y);
+
+        Debug.Log(string.Format(cheading_));
+
     }
 	///***********************************************************************
 	/// Control playerShip's position with touch position parameters
