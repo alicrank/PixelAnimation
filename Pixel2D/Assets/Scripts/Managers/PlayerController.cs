@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	//Distance between player and user's finger
 	private int fingerOffset = 100;
-    private bool useCamera = true;
+    private bool useCamera = false;
 	//Private internal variables
 	private float xVelocity = 0.0f;
 	private float zVelocity = 0.0f;
