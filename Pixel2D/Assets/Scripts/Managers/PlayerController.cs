@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	//Distance between player and user's finger
 	private int fingerOffset = 100;
-    private bool useCamera = true;
+    private bool useCamera = false;
 	//Private internal variables
 	private float xVelocity = 0.0f;
 	private float zVelocity = 0.0f;
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private WWW www_;
     private string cheading_;
 	Vector3 dest = Vector3.zero;
+	private float xx=0.0f;
     private float step=0.0f;
 	void Awake (){
 
@@ -58,9 +59,6 @@ public class PlayerController : MonoBehaviour {
         {
             if ((mJoystick.updatePixel) ||( useCamera))
             {
-                if(useCamera)
-                    camControl();
-                else
                     touchControl();
 
                 //this is just for debug and play in PC and SHOULD be commented at final build
@@ -93,7 +91,15 @@ public class PlayerController : MonoBehaviour {
                                                      transform.position.y,
                                                      transform.position.z);
             }
-            Vector3 dir = dest - (Vector3)transform.position;
+
+			if (useCamera) {
+				string[] pos = cheading_.Split(',');
+				float x = float.Parse(pos[0]);
+				float y = (float.Parse(pos[1]));
+				transform.position = new Vector3(x, transform.position.y, y);
+
+			}
+			Vector3 dir = dest - (Vector3)transform.position;
             GetComponent<Animator>().SetFloat("DirX", dir.x);
             dest = transform.position;
         }
