@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 		                                 0.5f,
 		                                 transform.position.z);
 		dest = transform.position;
-        url = "http://192.168.43.130:5000/currentPos";
+        url = "http://192.168.8.102:5000/currentPos";
         
         StartCoroutine(WaitForHeading());
 	}
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour {
         float y = (float.Parse(pos[1]));
         //Debug.Log(string.Format(cheading_));
         //Debug.Log(string.Format(pos[0]));
-        //Debug.Log(string.Format(pos[1]));
+        Debug.Log(string.Format(pos[1]));
         transform.position = new Vector3(x, transform.position.z, y);
     }
 	///***********************************************************************
