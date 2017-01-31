@@ -11,7 +11,7 @@ public class Joystick : MonoBehaviour {
 	private int lastFingerId = -1;						// Finger last used for this joystick
 	private bool firstTouch = true;
 
-	public static float velocityScale = 0.6f;					// The Max velocity the joystick can make Sphero go
+	public float velocityScale = 0.6f;					// The Max velocity the joystick can make Sphero go
 	public GUITexture puck;								// Joystick puck graphic
 	public GUITexture background;						// Joystick background graphic
 	public float joystickScale;

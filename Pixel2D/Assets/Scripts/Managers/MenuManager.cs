@@ -2,89 +2,112 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
-{
+public class MenuManager : MonoBehaviour {
 
 	///*************************************************************************///
 	/// Main Menu Buttons Controller.
 	///*************************************************************************///
+
+
+	private int controlType = 0;		 // 0=Tilt , 1=Touch
+	public GameObject controlTypeText;
 
 	public AudioClip menuTap;
 
 	private bool canTap;
 	private float buttonAnimationSpeed = 9;
 
-	void Awake ()
-	{
+	void Awake (){
 
 		canTap = true; //player can tap on buttons
+		
+
+		//fetch previous controlType set by player, instead of resetting it everytime
+		controlType = PlayerPrefs.GetInt("controlType");
+		if(controlType == 0) {
+			controlTypeText.GetComponent<TextMesh>().text = "";
+		} else {
+			controlTypeText.GetComponent<TextMesh>().text = "";
+		}
 	}
 
-	void Start ()
-	{
+	void Start (){
 		//prevent screenDim in handheld devices
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
-	void Update ()
-	{
+	void Update (){
 
-		if (canTap)
-			StartCoroutine (tapManager ());
+		if(canTap)	
+			StartCoroutine(tapManager());
 	}
-
 	///***********************************************************************
 	/// Process user inputs
 	///***********************************************************************
 	private RaycastHit hitInfo;
 	private Ray ray;
-
-	IEnumerator tapManager ()
-	{
+	IEnumerator tapManager (){
 
 		//Mouse of touch?
-		if (Input.touches.Length > 0 && Input.touches [0].phase == TouchPhase.Ended)
-			ray = Camera.main.ScreenPointToRay (Input.touches [0].position);
-		else if (Input.GetMouseButtonUp (0))
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if(	Input.touches.Length > 0 && Input.touches[0].phase == TouchPhase.Ended)  
+			ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+		else if(Input.GetMouseButtonUp(0))
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		else
 			yield break;
 			
-		if (Physics.Raycast (ray, out hitInfo)) {
+		if (Physics.Raycast(ray, out hitInfo)) {
 			GameObject objectHit = hitInfo.transform.gameObject;
-			switch (objectHit.name) {
-			case "btnPlay":
-				canTap = false;
-				playSfx (menuTap);
-				StartCoroutine(animateButton(objectHit));
-				yield return new WaitForSeconds (1.0f);
-				SceneManager.LoadScene ("Game-c#");
-				break;
+			switch(objectHit.name) {
+				case "btnPlay":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
+					SceneManager.LoadScene ("Game-c#");
+					break;
 					
-			case "btnExit":
-				canTap = false;
-				playSfx (menuTap);
-				StartCoroutine (animateButton (objectHit));
-				yield return new WaitForSeconds (1.0f);
-				Application.Quit ();
-				break;
+				case "btnExit":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
+					Application.Quit();
+					break;
 
-			case "btnInfo":
-				canTap = false;
-				playSfx (menuTap);
-				StartCoroutine (animateButton (objectHit));
-				yield return new WaitForSeconds (1.0f);
+				case "btnInfo":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
 					//Application.Quit();
-				break;
+					break;
 			
-			case "btnRank":
-				canTap = false;
-				playSfx (menuTap);
-				StartCoroutine (animateButton (objectHit));
-				yield return new WaitForSeconds (1.0f);
-				SceneManager.LoadScene ("Settings-c#");
-				break;
+				case "btnRank":
+					canTap = false;
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
+					yield return new WaitForSeconds(1.0f);
+					//Application.Quit();
+					break;
+
+				
+				case "ControlTypeLabel":
+					playSfx(menuTap);
+					StartCoroutine(animateButton(objectHit));
 					
+					if(controlType == 0) {
+						controlType = 1;
+						PlayerPrefs.SetInt("controlType", controlType);
+						controlTypeText.GetComponent<TextMesh>().text = "slow";
+					} else {
+						controlType = 0;
+						PlayerPrefs.SetInt("controlType", controlType);
+						controlTypeText.GetComponent<TextMesh>().text = "fast";
+					}
+					
+					yield return new WaitForSeconds(0.6f);
+					break;
 			}	
 		}
 	}
@@ -92,8 +115,7 @@ public class MenuManager : MonoBehaviour
 	///***********************************************************************
 	/// Animate button by modifying it's scale
 	///***********************************************************************
-	IEnumerator animateButton (GameObject _btn)
-	{
+	IEnumerator animateButton ( GameObject _btn  ){
 		canTap = false;
 		Vector3 startingScale = _btn.transform.localScale;
 		Vector3 destinationScale = startingScale * 1.1f;
@@ -101,35 +123,34 @@ public class MenuManager : MonoBehaviour
 		float t = 0.0f; 
 		while (t <= 1.0f) {
 			t += Time.deltaTime * buttonAnimationSpeed;
-			_btn.transform.localScale = new Vector3 (Mathf.SmoothStep (startingScale.x, destinationScale.x, t),
-				_btn.transform.localScale.y,
-				Mathf.SmoothStep (startingScale.z, destinationScale.z, t));
+			_btn.transform.localScale = new Vector3(Mathf.SmoothStep(startingScale.x, destinationScale.x, t),
+			                                        _btn.transform.localScale.y,
+			                                        Mathf.SmoothStep(startingScale.z, destinationScale.z, t));
 			yield return 0;
 		}
 		
 		float r = 0.0f; 
-		if (_btn.transform.localScale.x >= destinationScale.x) {
+		if(_btn.transform.localScale.x >= destinationScale.x) {
 			while (r <= 1.0f) {
 				r += Time.deltaTime * buttonAnimationSpeed;
-				_btn.transform.localScale = new Vector3 (Mathf.SmoothStep (destinationScale.x, startingScale.x, r),
-					_btn.transform.localScale.y,
-					Mathf.SmoothStep (destinationScale.z, startingScale.z, r));
+				_btn.transform.localScale = new Vector3(Mathf.SmoothStep(destinationScale.x, startingScale.x, r),
+				                                        _btn.transform.localScale.y,
+				                                        Mathf.SmoothStep(destinationScale.z, startingScale.z, r));
 				yield return 0;
 			}
 		}
 		
-		if (r >= 1)
+		if(r >= 1)
 			canTap = true;
 	}
 
 	///***********************************************************************
 	/// play audio clip
 	///***********************************************************************
-	void playSfx (AudioClip _sfx)
-	{
-		GetComponent<AudioSource> ().clip = _sfx;
-		if (!GetComponent<AudioSource> ().isPlaying)
-			GetComponent<AudioSource> ().Play ();
+	void playSfx ( AudioClip _sfx  ){
+		GetComponent<AudioSource>().clip = _sfx;
+		if(!GetComponent<AudioSource>().isPlaying)
+			GetComponent<AudioSource>().Play();
 	}
 
 }
