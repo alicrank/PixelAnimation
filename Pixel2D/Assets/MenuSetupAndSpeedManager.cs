@@ -9,7 +9,7 @@ public class MenuSetupAndSpeedManager : MonoBehaviour {
 	/// Main Menu Buttons Controller.
 	///*************************************************************************///
 
-	private int controlType = 0;		 // 0=Tilt , 1=Touch
+	private int controlType = 1;		
 	public AudioClip menuTap;
 	private bool canTap;
 	private float buttonAnimationSpeed = 9;
@@ -25,6 +25,9 @@ public class MenuSetupAndSpeedManager : MonoBehaviour {
 	public void speedValueChanged(float newSpeed)
 	{
 		Debug.Log (newSpeed);
+		int quantizedSpeed = (int)Math.Ceiling(newSpeed);
+		controlType=quantizedSpeed;
+		PlayerPrefs.SetInt("controlType", controlType);
 	}
 	void Update (){
 
@@ -66,13 +69,13 @@ public class MenuSetupAndSpeedManager : MonoBehaviour {
 				break;
 
 			case "btnBall":
-				controlType = 0;
+				//controlType = 0;
 				PlayerPrefs.SetInt("controlType", controlType);
 				Debug.Log(string.Format("Ball"));
 				break;
 
 			case "btnCamera":
-				controlType = 1;
+				//controlType = 1;
 				PlayerPrefs.SetInt("controlType", controlType);
 				Debug.Log(string.Format("Cam"));
 				break;
