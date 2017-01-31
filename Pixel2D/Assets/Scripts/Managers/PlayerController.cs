@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
         
         StartCoroutine(WaitForHeading());
 		Debug.Log (controlType);
+		float speed=(float)controlType;
+		mJoystick.velocityScale=speed/10.0f;
 	}
     public IEnumerator WaitForHeading()
     {
