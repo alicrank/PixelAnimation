@@ -316,11 +316,11 @@ public class GameController : MonoBehaviour
 		switch (myState) {
 		case state.EASY: 
 			SquirrelAttack.SetActive (false);
-			Joystick.velocityScale = 0.6f;
+			Joystick.velocityScale = 2.0f* PlayerPrefs.GetFloat("velocityFactor");
 			break;
 		case  state.DIFFICULT:
 			SquirrelAttack.SetActive (true);
-			Joystick.velocityScale = 0.3f;
+			Joystick.velocityScale = 0.5f* PlayerPrefs.GetFloat("velocityFactor");;
 			break;
 		default:
 			break;
