@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
         url = "http://192.168.8.102:5000/currentPos";
         
         StartCoroutine(WaitForHeading());
+		Debug.Log (controlType);
 	}
     public IEnumerator WaitForHeading()
     {

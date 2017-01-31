@@ -1,54 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class MenuManager : MonoBehaviour {
+public class MenuSetupAndSpeedManager : MonoBehaviour {
 
 	///*************************************************************************///
 	/// Main Menu Buttons Controller.
 	///*************************************************************************///
 
-	private int bestScore;
-	private int lastScore;
-	public GameObject bestScoreText;	 //we just need the textmesh component
-	public GameObject lastScoreText;	 // ""       ""        ""       ""
 	private int controlType = 0;		 // 0=Tilt , 1=Touch
-	public GameObject controlTypeText;
-
 	public AudioClip menuTap;
-
 	private bool canTap;
 	private float buttonAnimationSpeed = 9;
 
 	void Awake (){
-
 		canTap = true; //player can tap on buttons
-
-		bestScore = PlayerPrefs.GetInt("bestScore");
-		bestScoreText.GetComponent<TextMesh>().text = bestScore.ToString();
-
-		lastScore = PlayerPrefs.GetInt("lastScore");
-		lastScoreText.GetComponent<TextMesh>().text = lastScore.ToString();
-
-		//fetch previous controlType set by player, instead of resetting it everytime
-		controlType = PlayerPrefs.GetInt("controlType");
-		if(controlType == 0) {
-			controlTypeText.GetComponent<TextMesh>().text = "Control: Tilt";
-		} else {
-			controlTypeText.GetComponent<TextMesh>().text = "Control: Touch";
-		}
 	}
 
 	void Start (){
 		//prevent screenDim in handheld devices
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
-
+	public void speedValueChanged(float newSpeed)
+	{
+		Debug.Log (newSpeed);
+	}
 	void Update (){
 
 		if(canTap)	
 			StartCoroutine(tapManager());
 	}
+
 	///***********************************************************************
 	/// Process user inputs
 	///***********************************************************************
@@ -68,7 +51,6 @@ public class MenuManager : MonoBehaviour {
 			GameObject objectHit = hitInfo.transform.gameObject;
 			switch(objectHit.name) {
 			case "btnPlay":
-				canTap = false;
 				playSfx(menuTap);
 				StartCoroutine(animateButton(objectHit));
 				yield return new WaitForSeconds(1.0f);
@@ -83,22 +65,18 @@ public class MenuManager : MonoBehaviour {
 				Application.Quit();
 				break;
 
-			case "ControlTypeLabel":
-				playSfx(menuTap);
-				StartCoroutine(animateButton(objectHit));
-
-				if(controlType == 0) {
-					controlType = 1;
-					PlayerPrefs.SetInt("controlType", controlType);
-					controlTypeText.GetComponent<TextMesh>().text = "Control: Touch";
-				} else {
-					controlType = 0;
-					PlayerPrefs.SetInt("controlType", controlType);
-					controlTypeText.GetComponent<TextMesh>().text = "Control: Tilt";
-				}
-
-				yield return new WaitForSeconds(0.6f);
+			case "btnBall":
+				controlType = 0;
+				PlayerPrefs.SetInt("controlType", controlType);
+				Debug.Log(string.Format("Ball"));
 				break;
+
+			case "btnCamera":
+				controlType = 1;
+				PlayerPrefs.SetInt("controlType", controlType);
+				Debug.Log(string.Format("Cam"));
+				break;
+
 			}	
 		}
 	}

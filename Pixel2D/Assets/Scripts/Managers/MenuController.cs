@@ -77,6 +77,11 @@ public class MenuController : MonoBehaviour {
 					}
 					break;
 
+				case "btnRank":
+					UnInfoGame(); 
+					SceneManager.LoadScene ("Settings-c#");	
+					break;
+
 				case "retryButtonPause":
 					UnInfoGame(); 
 					SceneManager.LoadScene ("Menu-c#");	
