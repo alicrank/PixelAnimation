@@ -56,7 +56,7 @@ public class MenuSetupAndSpeedManager : MonoBehaviour {
 				playSfx(menuTap);
 				StartCoroutine(animateButton(objectHit));
 //				yield return new WaitForSeconds(1.0f);
-				SceneManager.LoadScene ("Menu-c#");
+				SceneManager.LoadScene ("Game-c#");
 				Debug.Log(string.Format("Back"));
 				break;
 
